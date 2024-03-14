@@ -13,14 +13,12 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-4 px-5">
+    <main class="container mx-auto mt-5 px-5">
     <%= render "layouts/navbar" %> 
     <%= yield %>   
     <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-
     <%= render "layouts/footer" %>
-    
     </main>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   </body>
