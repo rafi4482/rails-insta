@@ -6,5 +6,7 @@ class Post < ApplicationRecord
   
     validates :keywords, presence: true
     
+    has_many_attached :images
+    
   end
   

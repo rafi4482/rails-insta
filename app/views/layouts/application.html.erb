@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Instaclone</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,7 +16,12 @@
     <main class="container mx-auto mt-4 px-5">
     <%= render "layouts/navbar" %> 
     <%= yield %>   
+    <p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
     <%= render "layouts/footer" %>
+    
     </main>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   </body>
 </html>

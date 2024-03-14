@@ -1,4 +1,6 @@
-<%= link_to post_path(post), class: "block", id: dom_id(post) do %>
+<%= link_to post_path(post), class: "block", id: dom_id(post), "data-action": "click->carousel#navigate" do %>
+  
+  
   <div class="bg-white rounded-lg shadow-md overflow-hidden p-6 mb-5 cursor-pointer">
     <p class="my-4">
       <span class="text-gray-700"><%= post.title %></span>
@@ -11,10 +13,45 @@
     <p class="my-4">
       <span class="text-gray-700"><%= post.keywords %></span>
     </p>
-
-    <% if action_name != "show" %>
-    
-      <hr class="my-6">
+  
+    <% if post.images.attached? %>
+      <div class="swiper mySwiper mt-4">
+        <div class="swiper-wrapper">
+          <% post.images.each do |image| %>
+            <div class="swiper-slide flex justify-center" style="height: 600px;">
+              <%= image_tag image, class: "h-full w-full object-contain" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
     <% end %>
   </div>
+  
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.mySwiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    
+    document.querySelectorAll('[data-action="click->carousel#navigate"]').forEach(element => {
+      element.addEventListener('click', event => {
+        if (!event.target.closest('.swiper-pagination, .swiper-button-next, .swiper-button-prev')) {
+          window.location.href = '<%= post_path(post) %>';
+        }
+      });
+    });
+  });
+</script>
