@@ -1,0 +1,21 @@
+<div id="<%= dom_id(post) %>" class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+  <p class="my-4">
+    <span class="text-gray-700"><%= post.title %></span>
+  </p>
+
+  <p class="my-4">
+    <span class="text-gray-700"><%= post.desc %></span>
+  </p>
+
+  <p class="my-4">
+    <span class="text-gray-700"><%= post.keywords %></span>
+  </p>
+
+  <% if action_name != "show" %>
+    <div class="flex flex-wrap gap-2 mt-5">
+      <%= link_to "Show this post", post, class: "rounded-lg py-2 px-4 bg-blue-500 text-white font-medium hover:bg-blue-600 transition-colors duration-200" %>
+      <%= link_to "Edit this post", edit_post_path(post), class: "rounded-lg py-2 px-4 bg-green-500 text-white font-medium hover:bg-green-600 transition-colors duration-200" %>
+    </div>
+    <hr class="my-6">
+  <% end %>
+</div>
